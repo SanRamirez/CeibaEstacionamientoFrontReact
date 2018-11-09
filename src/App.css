@@ -1,32 +1,78 @@
 .App {
   text-align: center;
+  height: 100%!important;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+html{
+  background-color: #ffffff;
+}
+
+.App-logoCeiba{
+  height: 60px;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color:rgb(43, 194, 169);
+  padding: 5px;
+  overflow: hidden;
   color: white;
+  display:flex;
+  width: 100%;
+  height: 60pt;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+.App-title {
+  font-size: x-large;
+  padding: 5px;
+  margin: 10px;
+}
+.Precio-Dolar {
+  font-size: x-large;
+  padding: 5px;
+  margin: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.divFormularioIngreso{
+  display:flex;
+  align-items: center;
+}
+
+.divFormularioRetiro{
+  display:flex;
+  align-items: center;
+}
+
+.divFooter{
+  background-color : rgba(5, 107, 94, 0.322);
+  position: fixed;
+  bottom: 0px;
+  width:100%;
+  height: 10%;
+  text-align: center;
+  color:white;
+}
+
+.footdiv{
+  width:100%;
+  text-align: center;
+}
+
+.tabs{
+  width: 100%;
+}
+.tabs .tab a{
+  color:black;
+}
+
+ul.tabs div.indicator{
+  background: olivedrab;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: olivedrab;
+}
+
+.tabs .tab a:hover {
+color: #1c9e93;
 }
