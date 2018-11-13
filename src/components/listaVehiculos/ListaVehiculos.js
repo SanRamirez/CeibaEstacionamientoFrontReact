@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import ApiEstacionamientoCeiba from '../../services/ApiEstacionamientoCeiba';
 class ListaVehiculos extends React.Component {
 
-    constructor() {
-      super()
+    constructor(props) {
+      super(props)
        this.state = {
-          vehiculos: []
+          //vehiculos: this.props.vehiculos
         }
     }
   
     componentDidMount() {
+      /*
       ApiEstacionamientoCeiba.consultarVehiculos()
         .then(res => {
           let vehiculos = res;
@@ -24,10 +25,12 @@ class ListaVehiculos extends React.Component {
             });
           }
         });
+      */  
     }
   
     render() {
-      if (this.state.vehiculos == "") {
+      console.log(this.props.vehiculos);
+      if (this.props.vehiculos == "" || typeof this.props.vehiculos === 'undefined') {
   
       return (
           <p>No se tienen vehiculos parqueados</p>
@@ -35,7 +38,7 @@ class ListaVehiculos extends React.Component {
   
       } else {
 
-          let Items = this.state.vehiculos((Item, i) =>
+          let Items = this.props.vehiculos.map((Item, i) =>
             <tr key={i}>
               <td>{Item.placa}</td>
             </tr>

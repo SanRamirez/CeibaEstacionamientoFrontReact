@@ -1,16 +1,3 @@
-//const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-//let url = "http://localhost:8080/api/v1.0/estacionamiento";
-
-/*
-const options =  {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-  }
-*/
-
 class RequestService {
 
     // async function

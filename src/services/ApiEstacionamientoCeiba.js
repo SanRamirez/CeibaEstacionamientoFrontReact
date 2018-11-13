@@ -37,13 +37,9 @@ class ApiEstacionamientoCeiba{
         //datos = JSON.stringify(datos);
         let options =  {
             method: 'GET',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            
-          }
+        }
         let url = `${BASE_URL}/registrarSalidaVehiculo/${placa}`;
+        console.log(url);
         return RequestService.getRequest(url,options);
       }
 
@@ -58,9 +54,6 @@ class ApiEstacionamientoCeiba{
         let url = `${BASE_URL}/consultarVehiculos`;
         return RequestService.getRequest(url,options);
         }
-
-
-
 
 
 }
