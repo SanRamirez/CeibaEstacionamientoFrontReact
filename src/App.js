@@ -3,7 +3,7 @@ import logoCeiba from './logoCeibaSoftware.png';
 import './App.css';
 import ApiEstacionamientoCeiba from './services/ApiEstacionamientoCeiba';
 //import ListaNotas from './components/listaVehiculos/ListaVehiculos.js';
-import {Button, Icon,Footer,Input,Tab,Tabs} from 'react-materialize';
+import {Button, Icon,Footer,Input,Tabs, Tab} from 'react-materialize';
 import Swal from 'sweetalert2'
 
 
@@ -29,10 +29,12 @@ class App extends Component {
 
   
   handleChange(event){
-    let input = event.target.id;
+    let theEvent = event || window.event;
+    let input = theEvent.target.id;
     console.log(input);
-    console.log(event.target.value);
-    this.setState({ [input]: event.target.value });
+    console.log(theEvent.target.value);
+    this.setState({ [input]: theEvent.target.value });
+    if(theEvent.preventDefault) theEvent.preventDefault();
   }
 
   handleSubmit(event){
@@ -86,10 +88,13 @@ class App extends Component {
             if(mensaje === "OK"){
               //alert("El registro del ingreso se ha realizado exitosamente");
               Swal(
-                'Ingreso Vehiculo',
-                'El ingreso se ha realizado exitosamente',
-                'success'
-              );
+                {
+                  title:'Ingreso Vehiculo',
+                  text : 'El ingreso se ha realizado exitosamente',
+                  type :'success',
+                  customClass:'emergenteIngresoExitoso'
+                });
+              this.llamadoApi("","listarVehiculos");
             }else{
               Swal(
                 'Ingreso Vehiculo',
@@ -120,7 +125,7 @@ class App extends Component {
           if (typeof data !== 'undefined') {
             let factura = data;
             console.log (factura);
-            if((factura.valor == null || factura.valor == 'undefined')){
+            if((factura.valor === null || factura.valor === 'undefined')){
               Swal(
                 'Ingreso Vehiculo',
                 factura.mensaje,
@@ -130,7 +135,7 @@ class App extends Component {
               Swal(
                 'Retirar Vehiculo',
                 'El total a pagar por el tiempo de parqueo es: $'+factura.valor,
-                'success'
+                'success',
               );
             }
             this.llamadoApi("","listarVehiculos");
@@ -208,22 +213,22 @@ class App extends Component {
           <h3 className="App-title">Ceiba Estacionamiento</h3>
         </header>
         
-        <Tabs className='tabs1'>
-          <Tab title="Ingresar Vehiculo" active>
+        <Tabs   className='tabsApp'>
+          <Tab id="tabIngresarVehiculo"  title="Ingresar Vehiculo" active>
             <div className="divFormularioIngreso">
               <form onSubmit={this.handleSubmit} className="formIngresoVehiculo">
                     <Input   label="Placa" id="placa" defaultValue={this.state.placa} onBlur={this.handleChange} required ><Icon>description</Icon></Input >
                     <Input  label="Cilindraje" onKeyPress={this.validate} id="cilindraje" defaultValue={this.state.cilindraje} onBlur={this.handleChange}  required ><Icon>local_gas_station</Icon></Input>
-                    <Input  type='select' id="tipo" className="inputSelectTipoVehiculo" onChange={this.handleChange} defaultValue={this.state.tipo}>
+                    <Input  type='select' id="tipo" className="inputSelectTipoVehiculo" onBlur={this.handleChange} defaultValue={this.state.tipo}>
                       <option value='1'>  Moto</option>
                       <option value='2'>  Carro</option>
                     </Input>
-                    <Button waves='light' type="submit" className="botonIngresarVehiculo">Ingresar Vehiculo<Icon left>assignment_turned_in</Icon></Button>
+                    <Button id="btnIngresarVehiculo" waves='light' type="submit" className="botonIngresarVehiculo">Ingresar Vehiculo<Icon left>assignment_turned_in</Icon></Button>
               </form>
             </div>
           </Tab>
 
-          <Tab title="Retirar Vehiculo">
+          <Tab id="tabRetirarVehiculo" title="Retirar Vehiculo">
             <div className="divFormularioRetiro">
               <form onSubmit={this.handleSubmitRetirarVehiculo} className="formRetiro">
                   <Input  label="placa" id="placaRetiro" defaultValue={this.state.placaRetiro} onBlur={this.handleChange} required ><Icon>description</Icon></Input>
@@ -232,7 +237,7 @@ class App extends Component {
             </div>
             </Tab>
           
-          <Tab title="Listar Vehiculos">
+          <Tab  id="tab" title="Listar Vehiculos">
                     <table className='table table-striped'>
                     <thead>
                         <tr>
@@ -251,7 +256,7 @@ class App extends Component {
         </Tabs>
 
 
-        <Footer className="divFooter" copyrights="&copy Copyright  Ceiba Software 2018" ></Footer>
+        <Footer className="divFooter" copyrights="© 2018 Santiago Ramírez"><center> Proyecto de entrenamiento ADN Ceiba </center></Footer>
 
       </div>
     );

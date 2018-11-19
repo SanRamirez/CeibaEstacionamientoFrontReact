@@ -28,6 +28,7 @@ html{
   margin: 10px;
   margin-left : 10%; 
 }
+
 .Precio-Dolar {
   font-size: 14pt;
   padding: 5px;
@@ -49,7 +50,6 @@ html{
 }
 
 .divFormularioRetiro{
-
   align-items: center;
   text-align : center;
   justify-content: center;
@@ -68,14 +68,8 @@ html{
   position: fixed!important;
   bottom: 0px!important;
   width:100%!important;
-  height: 10%!important;
   text-align: center!important;
   color:white!important;
-}
-
-.footdiv{
-  width:100%;
-  text-align: center;
 }
 
 .tabs{
